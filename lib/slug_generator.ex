@@ -3,16 +3,12 @@ defmodule SlugGenerator do
   Documentation for `SlugGenerator`.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> SlugGenerator.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def create(string) do
+    string
+    |> String.downcase()
+    |> String.replace(~r/[^a-zA-Z0-9 &]/, "")
+    |> String.replace("&", "and")
+    |> String.split()
+    |> Enum.join("-")
   end
 end
